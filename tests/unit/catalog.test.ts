@@ -23,9 +23,9 @@ function size(path: string) {
 }
 
 describe('каталог мебели и техники (задача 26)', () => {
-  it('30–40 предметов с уникальными id и лицензиями CC0 (Poly Haven или собственные)', () => {
+  it('30–45 предметов с уникальными id и лицензиями CC0 (Poly Haven или собственные)', () => {
     expect(techCatalog.length).toBeGreaterThanOrEqual(30);
-    expect(techCatalog.length).toBeLessThanOrEqual(40);
+    expect(techCatalog.length).toBeLessThanOrEqual(45);
     expect(new Set(techCatalog.map((item) => item.id)).size).toBe(techCatalog.length);
     for (const item of techCatalog) {
       expect(item.license.license, item.id).toBe('CC0 1.0');

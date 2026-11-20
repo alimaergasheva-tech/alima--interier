@@ -148,5 +148,35 @@
     "depthCm": 40,
     "heightCm": 25,
     "triangles": 320
+  },
+  "fridge_01": {
+    "widthCm": 60,
+    "depthCm": 68,
+    "heightCm": 190,
+    "triangles": 2364
+  },
+  "washing_machine_01": {
+    "widthCm": 60,
+    "depthCm": 55,
+    "heightCm": 85,
+    "triangles": 4116
+  },
+  "bathtub_01": {
+    "widthCm": 170,
+    "depthCm": 75,
+    "heightCm": 58,
+    "triangles": 2352
+  },
+  "toilet_01": {
+    "widthCm": 38,
+    "depthCm": 68,
+    "heightCm": 80,
+    "triangles": 1068
+  },
+  "washbasin_01": {
+    "widthCm": 60,
+    "depthCm": 46,
+    "heightCm": 88,
+    "triangles": 3100
   }
 }

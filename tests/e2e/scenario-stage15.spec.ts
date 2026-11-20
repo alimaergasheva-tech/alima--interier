@@ -80,6 +80,12 @@ test('AC-13: у комнаты без подходящих предметов к
   await page.getByRole('button', { name: 'Открыть интерьер' }).click();
   await page.waitForFunction(() => window.__planner?.activeRoomCenter() != null);
 
+  // С этапа 26 у туалета есть унитаз и раковина, поэтому пустой каталог моделируем: убираем тип «туалет» у предметов.
+  await page.evaluate(async () => {
+    const path = '/src/catalog/techCatalog.ts';
+    const { techCatalog } = await import(/* @vite-ignore */ path);
+    for (const item of techCatalog) (item as { roomTypes: string[] }).roomTypes = item.roomTypes.filter((type: string) => type !== 'toilet');
+  });
   await page.getByLabel('Активная комната').selectOption({ label: 'Туалет' });
   await expect(page.getByTestId('catalog-empty')).toBeVisible();
   await expect(page.getByTestId('catalog-empty')).toContainText('ничего нет');

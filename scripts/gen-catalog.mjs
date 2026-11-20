@@ -8,7 +8,7 @@ const OWN = Object.keys(JSON.parse(readFileSync('docs/stage-16/modern-models.jso
 const AUTHORS = JSON.parse(readFileSync(process.argv[2], 'utf8'));
 
 // [id, название, категория, типы помещений, установка, высота установки для стены, см]
-const L = 'living', KL = 'kitchen-living', B = 'bedroom', K = 'kitchen', H = 'hallway', BA = 'bathroom', CB = 'combined-bathroom', W = 'wardrobe', BC = 'balcony';
+const L = 'living', KL = 'kitchen-living', B = 'bedroom', K = 'kitchen', H = 'hallway', BA = 'bathroom', CB = 'combined-bathroom', W = 'wardrobe', BC = 'balcony', T = 'toilet';
 const TABLE = [
   ['sofa_02', 'Диван компактный', 'Мягкая мебель', [L, KL], 'floor'],
   ['Sofa_01', 'Двухместный диван', 'Мягкая мебель', [L, KL, B], 'floor'],
@@ -31,6 +31,11 @@ const TABLE = [
   ['painted_wooden_nightstand', 'Прикроватная тумба', 'Хранение', [B], 'floor'],
   ['wooden_bookshelf_worn', 'Книжный стеллаж', 'Хранение', [L, KL, B, H], 'floor'],
   ['painted_wooden_bench', 'Банкетка', 'Хранение', [H, K, KL, W, BC], 'floor'],
+  ['fridge_01', 'Холодильник', 'Техника', [K, KL], 'floor'],
+  ['washing_machine_01', 'Стиральная машина', 'Техника', [BA, CB, K], 'floor'],
+  ['bathtub_01', 'Ванна', 'Сантехника', [BA, CB], 'floor'],
+  ['toilet_01', 'Унитаз', 'Сантехника', [T, BA, CB], 'floor'],
+  ['washbasin_01', 'Раковина с тумбой', 'Сантехника', [BA, CB, T], 'floor'],
   ['television_02', 'Телевизор', 'Техника', [L, KL, B], 'tabletop'],
   ['electric_stove', 'Электроплита', 'Техника', [K, KL], 'floor'],
   ['vintage_electric_kettle', 'Чайник электрический', 'Техника', [K, KL], 'tabletop'],

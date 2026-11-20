@@ -48,6 +48,11 @@
 | potted_plant_01 | Комнатное растение | https://polyhaven.com/a/potted_plant_01 | Rico Cilliers | CC0 1.0 | не требуется | 16.11.2026 | glTF + bin + текстуры 1k, 6,03 МБ | 59 × 63 × 135 |
 | Chandelier_01 | Люстра | scripts/gen-modern-models.mjs | Проект alima (собственная модель) | CC0 1.0 | не требуется | 19.11.2026 | glTF + bin без текстур, 5040 треугольников | 80 × 80 × 70 |
 | floor_lamp | Торшер | scripts/gen-modern-models.mjs | Проект alima (собственная модель) | CC0 1.0 | не требуется | 19.11.2026 | glTF + bin без текстур | 40 × 40 × 165 |
+| fridge_01 | Холодильник | scripts/gen-modern-models.mjs | Проект alima (собственная модель) | CC0 1.0 | не требуется | 20.11.2026 | glTF + bin без текстур | 60 × 68 × 190 |
+| washing_machine_01 | Стиральная машина | scripts/gen-modern-models.mjs | Проект alima (собственная модель) | CC0 1.0 | не требуется | 20.11.2026 | glTF + bin без текстур | 60 × 55 × 85 |
+| bathtub_01 | Ванна | scripts/gen-modern-models.mjs | Проект alima (собственная модель) | CC0 1.0 | не требуется | 20.11.2026 | glTF + bin без текстур | 170 × 75 × 58 |
+| toilet_01 | Унитаз | scripts/gen-modern-models.mjs | Проект alima (собственная модель) | CC0 1.0 | не требуется | 20.11.2026 | glTF + bin без текстур | 38 × 68 × 80 |
+| washbasin_01 | Раковина с тумбой | scripts/gen-modern-models.mjs | Проект alima (собственная модель) | CC0 1.0 | не требуется | 20.11.2026 | glTF + bin без текстур | 60 × 46 × 88 |
 | Chandelier_02 | Люстра современная круглая | scripts/gen-modern-models.mjs | Проект alima (собственная модель) | CC0 1.0 | не требуется | 19.11.2026 | glTF + bin без текстур | 60 × 60 × 45 |
 | ceiling_shade_01 | Плафон | scripts/gen-modern-models.mjs | Проект alima (собственная модель) | CC0 1.0 | не требуется | 19.11.2026 | glTF + bin без текстур | 40 × 40 × 25 |
 | desk_lamp_arm_01 | Настольная лампа | https://polyhaven.com/a/desk_lamp_arm_01 | Yann Kervran, Kuutti Siitonen | CC0 1.0 | не требуется | 16.11.2026 | glTF + bin + текстуры 1k, 2,74 МБ | 20 × 61 × 89 |
