@@ -254,7 +254,7 @@ npx proweb-skills@latest install threejs-lighting threejs-materials threejs-text
 npx proweb-skills@latest install break-ui --agent codex
 ```
 
-Для установки в Cursor замените `--agent codex` на `--agent cursor`. Для обоих инструментов используйте `--agent cursor codex`. Флаг `--global` не нужен: выбран проектный способ установки. Проект ведёт Claude Code (SPEC D-20): поддерживает ли менеджер этого агента, проверяется в задаче 2.2 по справке `npx proweb-skills@latest --help`.
+Для установки в Cursor замените `--agent codex` на `--agent cursor`. Для обоих инструментов используйте `--agent cursor codex`. Флаг `--global` не нужен: выбран проектный способ установки. Проект ведёт Claude Code (SPEC D-20): для него используется `--agent claude` (проверено в задаче 2.2), скиллы ставятся в `.claude/skills` проекта.
 
 Проверка каталога и установленного набора:
 
