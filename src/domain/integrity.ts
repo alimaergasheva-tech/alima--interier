@@ -13,7 +13,8 @@ export type IssueCode =
   | 'wall-not-axis-aligned'
   | 'room-not-closed'
   | 'room-not-rectangular'
-  | 'room-degenerate';
+  | 'room-degenerate'
+  | 'furniture-conflict';
 
 export interface Issue {
   code: IssueCode;

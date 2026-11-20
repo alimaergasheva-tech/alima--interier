@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-13T15:41:23.264Z",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+  "gpu": "ANGLE (Intel, Intel(R) UHD Graphics 630 (0x00009BC8) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "viewport": "1920×1080",
+  "devicePixelRatio": 1,
+  "build": "dev-сервер Vite (не production-сборка)",
+  "scene": "комната 420 × 350 см, 3 предмета, один направленный источник с тенями 2048",
+  "sceneReadyMs": 1138,
+  "modelAppearMs": {
+    "sofa_03": 114,
+    "modern_coffee_table_01": 17,
+    "modern_arm_chair_01": 16
+  },
+  "idle": {
+    "frames": 300,
+    "fps": 59.99880002399953,
+    "p95Ms": 16.800000000000182,
+    "maxMs": 17
+  },
+  "orbit": {
+    "frames": 240,
+    "fps": 60,
+    "p95Ms": 16.799999999999272,
+    "maxMs": 16.80000000000109
+  }
+}

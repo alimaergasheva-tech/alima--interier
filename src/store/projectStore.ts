@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { findCatalogItem } from '../catalog/techCatalog';
 import {
   createHistory,
   execute,
@@ -10,8 +11,11 @@ import {
   type Validator,
 } from '../commands/history';
 import type { Apartment } from '../domain/types';
+import { createApartmentValidator } from '../geometry/validateApartment';
 
 // Данные проекта и история отмены. Состояние интерфейса хранится отдельно (uiStore).
+
+const defaultValidator = createApartmentValidator(findCatalogItem);
 
 interface ProjectState {
   /** null — схема квартиры ещё не выбрана. */
@@ -27,7 +31,7 @@ interface ProjectState {
 export const useProjectStore = create<ProjectState>()((set, get) => ({
   history: null,
   loadApartment: (apartment) => set({ history: createHistory(apartment) }),
-  execute: (change, validate) => {
+  execute: (change, validate = defaultValidator) => {
     const { history } = get();
     if (!history) return null;
     const result = execute(history, change, validate);
