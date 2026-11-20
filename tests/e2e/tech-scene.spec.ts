@@ -17,6 +17,18 @@ async function dragTo(page: Page, from: { x: number; y: number }, to: { x: numbe
   if (release) await page.mouse.up();
 }
 
+/**
+ * Ждёт, пока только что поставленный предмет окажется в сцене: модель загружена
+ * и пройдено два кадра отрисовки. Без этого при нагрузке указатель попадает в пустое место
+ * и вместо переноса начинается вращение камеры.
+ */
+async function settle(page: Page, catalogId: string) {
+  await page.waitForFunction((id) => window.__planner!.measured[id] != null, catalogId);
+  await page.evaluate(
+    () => new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))),
+  );
+}
+
 async function cardCenter(page: Page, catalogId: string) {
   const box = (await page.locator(`[data-catalog-id="${catalogId}"]`).boundingBox())!;
   return { x: box.x + box.width / 2, y: box.y + box.height / 2 };
@@ -113,6 +125,7 @@ test('предмет нельзя поставить в другой предм�
 
 test('перенос в 3D не вращает камеру, после отказа камера снова управляется', async ({ page }) => {
   await dragTo(page, await cardCenter(page, 'modern_coffee_table_01'), await clientPoint(page, 'scene', 210, 175));
+  await settle(page, 'modern_coffee_table_01');
   const before = await cameraPosition(page);
 
   // Допустимый перенос существующего предмета в 3D.
