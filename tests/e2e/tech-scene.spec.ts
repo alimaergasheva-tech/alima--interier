@@ -94,6 +94,23 @@ test('выход за стену: красное превью, причина т
   expect(await page.evaluate(() => window.__planner!.historyLength())).toBe(1);
 });
 
+test('предмет нельзя поставить в другой предмет', async ({ page }) => {
+  const status = page.getByTestId('status');
+  await dragTo(page, await cardCenter(page, 'sofa_03'), await clientPoint(page, 'plan', 210, 55));
+
+  // Кресло на диван: красный кандидат, причина с названием предмета, ничего не добавлено.
+  await dragTo(page, await cardCenter(page, 'modern_arm_chair_01'), await clientPoint(page, 'plan', 210, 60), false);
+  await expect(page.locator('.plan-item.is-draft.is-invalid')).toBeVisible();
+  await expect(status).toHaveText('Пересекается с предметом «Диван»');
+  await page.mouse.up();
+  expect(await furniture(page)).toHaveLength(1);
+  await expect(status).toContainText('Предмет не добавлен');
+
+  // Диван занимает z от 8,5 до 101,5 см; кресло глубиной 99 см с центром в z = 155 стоит ниже с зазором.
+  await dragTo(page, await cardCenter(page, 'modern_arm_chair_01'), await clientPoint(page, 'plan', 210, 155));
+  expect(await furniture(page)).toHaveLength(2);
+});
+
 test('перенос в 3D не вращает камеру, после отказа камера снова управляется', async ({ page }) => {
   await dragTo(page, await cardCenter(page, 'modern_coffee_table_01'), await clientPoint(page, 'scene', 210, 175));
   const before = await cameraPosition(page);

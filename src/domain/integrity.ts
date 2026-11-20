@@ -14,6 +14,17 @@ export type IssueCode =
   | 'room-not-closed'
   | 'room-not-rectangular'
   | 'room-degenerate'
+  | 'rooms-overlap'
+  | 'duplicate-vertex'
+  | 'duplicate-wall'
+  | 'unsplit-wall'
+  | 'orphan-wall'
+  | 'wall-thickness-mismatch'
+  | 'opening-outside-wall'
+  | 'opening-too-tall'
+  | 'openings-overlap'
+  | 'window-on-inner-wall'
+  | 'rooms-disconnected'
   | 'furniture-conflict';
 
 export interface Issue {

@@ -46,6 +46,7 @@ const OFF_SURFACE: PlacementResult = {
   code: 'invalid-data',
   message: 'Перенесите предмет на план или в комнату',
   conflictIds: [],
+  elevationCm: 0,
 };
 
 function update(): void {
@@ -69,7 +70,10 @@ function update(): void {
     }
     pose = { xCm, zCm, rotationDeg: active.rotationDeg };
     active.lastPose = pose;
-    result = validatePlacement(apartment, item, active.roomId, pose);
+    result = validatePlacement(apartment, item, active.roomId, pose, {
+      findItem: findCatalogItem,
+      ignoreId: active.source.type === 'move' ? active.source.furnitureId : undefined,
+    });
   }
 
   useUiStore.getState().setDraft({
@@ -166,7 +170,7 @@ function finishDrag(): void {
       roomId: drag.roomId,
       xCm: draft.pose.xCm,
       zCm: draft.pose.zCm,
-      elevationCm: 0,
+      elevationCm: draft.result.elevationCm,
       rotationDeg: draft.pose.rotationDeg,
       variantId: null,
     };

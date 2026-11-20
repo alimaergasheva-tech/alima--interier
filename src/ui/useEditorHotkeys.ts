@@ -33,7 +33,11 @@ export function useEditorHotkeys(): void {
           zCm: instance.zCm,
           rotationDeg: normalizeDeg(instance.rotationDeg + step),
         };
-        const check = validatePlacement(apartment, item, instance.roomId, pose);
+        const check = validatePlacement(apartment, item, instance.roomId, pose, {
+          findItem: findCatalogItem,
+          ignoreId: instance.id,
+          elevationCm: instance.elevationCm,
+        });
         if (!check.valid) {
           ui.setNotice(`${check.message}. Поворот не выполнен`);
           return;
