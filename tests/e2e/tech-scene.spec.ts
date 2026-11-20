@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
+import { visibleBox } from './helpers';
 
 // Техническая сцена этапа 4: реальные переносы мышью в плане и в 3D (AC-02, AC-06–AC-08).
 
@@ -30,12 +31,12 @@ async function settle(page: Page, catalogId: string) {
 }
 
 async function cardCenter(page: Page, catalogId: string) {
-  const box = (await page.locator(`[data-catalog-id="${catalogId}"]`).boundingBox())!;
+  const box = (await visibleBox(page.locator(`[data-catalog-id="${catalogId}"]`)))!;
   return { x: box.x + box.width / 2, y: box.y + box.height / 2 };
 }
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('/');
+  await page.goto('/?tech=1');
   await expect(page.locator('canvas')).toBeVisible();
   await page.waitForFunction(() => window.__planner?.camera != null && window.__planner.toClient('plan', 0, 0) != null);
 });
@@ -138,8 +139,9 @@ test('перенос в 3D не вращает камеру, после отка
   expect((await furniture(page))[0]).toMatchObject({ xCm: 300, zCm: 250 });
   expect(await cameraPosition(page)).toEqual(before);
 
-  const canvas = (await page.locator('canvas').boundingBox())!;
-  await dragTo(page, { x: canvas.x + 60, y: canvas.y + 60 }, { x: canvas.x + 260, y: canvas.y + 90 });
+  // Низ вида: левый верхний угол занят панелью времени суток.
+  const canvas = (await page.locator('.view-scene canvas').boundingBox())!;
+  await dragTo(page, { x: canvas.x + 60, y: canvas.y + canvas.height - 40 }, { x: canvas.x + 260, y: canvas.y + canvas.height - 70 });
   await page.waitForTimeout(200);
   expect(await cameraPosition(page)).not.toEqual(before);
 });

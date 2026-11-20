@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-20T09:50:38.873Z",
+  "label": "mac",
+  "results": {
+    "64": {
+      "maxSamples": 64,
+      "samples": 64,
+      "bvhMs": 289,
+      "renderMs": 76029,
+      "canvas": "1008×996",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36"
+    },
+    "256": {
+      "maxSamples": 256,
+      "samples": 256,
+      "bvhMs": 295,
+      "renderMs": 307087,
+      "canvas": "1008×996",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36"
+    }
+  },
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ]
+}

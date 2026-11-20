@@ -1,7 +1,7 @@
 import { findCatalogItem } from '../catalog/techCatalog';
 import { addFurniture, setFurniturePose } from '../commands/furniture';
 import type { FurnitureInstance, Id } from '../domain/types';
-import { normalizeDeg, snapCm, validatePlacement, type PlacementResult, type Pose } from '../geometry/placement';
+import { normalizeDeg, snapCm, validatePlacement, type PlacementResult, type Point, type Pose } from '../geometry/placement';
 import { selectApartment, useProjectStore } from '../store/projectStore';
 import { useUiStore, type DraftSource } from '../store/uiStore';
 import { getSurface, projectPointAt } from './surfaces';
@@ -33,6 +33,9 @@ interface ActiveDrag {
   clientY: number;
   alt: boolean;
   moved: boolean;
+  /** Режим поворота ручкой: центр предмета, вокруг которого считается угол. */
+  rotateCenter?: Point;
+  unsubscribeRoom?: () => void;
 }
 
 let active: ActiveDrag | null = null;
@@ -62,13 +65,20 @@ function update(): void {
   let pose: Pose = { ...active.lastPose, rotationDeg: active.rotationDeg };
   let result = OFF_SURFACE;
   if (point) {
-    let xCm = point.xCm - active.grab.dxCm;
-    let zCm = point.zCm - active.grab.dzCm;
-    if (!active.alt) {
-      xCm = snapCm(xCm, GRID_STEP_CM);
-      zCm = snapCm(zCm, GRID_STEP_CM);
+    if (active.rotateCenter) {
+      // Ручка стоит с тыльной стороны предмета: при угле 0 она направлена в −Z.
+      const raw = (Math.atan2(-(point.xCm - active.rotateCenter.xCm), -(point.zCm - active.rotateCenter.zCm)) * 180) / Math.PI;
+      active.rotationDeg = normalizeDeg(active.alt ? Math.round(raw) : Math.round(raw / ROTATE_STEP_DEG) * ROTATE_STEP_DEG);
+      pose = { xCm: active.lastPose.xCm, zCm: active.lastPose.zCm, rotationDeg: active.rotationDeg };
+    } else {
+      let xCm = point.xCm - active.grab.dxCm;
+      let zCm = point.zCm - active.grab.dzCm;
+      if (!active.alt) {
+        xCm = snapCm(xCm, GRID_STEP_CM);
+        zCm = snapCm(zCm, GRID_STEP_CM);
+      }
+      pose = { xCm, zCm, rotationDeg: active.rotationDeg };
     }
-    pose = { xCm, zCm, rotationDeg: active.rotationDeg };
     active.lastPose = pose;
     result = validatePlacement(apartment, item, active.roomId, pose, {
       findItem: findCatalogItem,
@@ -115,6 +125,7 @@ function onKeyDown(event: KeyboardEvent): void {
 }
 
 function detach(): void {
+  active?.unsubscribeRoom?.();
   window.removeEventListener('pointermove', onPointerMove);
   window.removeEventListener('pointerup', onPointerUp);
   window.removeEventListener('pointercancel', cancelDrag);
@@ -125,8 +136,8 @@ function detach(): void {
 /** Отменяет кандидат: новый предмет не создаётся, существующий остаётся на месте. */
 export function cancelDrag(): void {
   if (!active) return;
-  active = null;
   detach();
+  active = null;
   useUiStore.getState().setDraft(null);
 }
 
@@ -135,8 +146,8 @@ function finishDrag(): void {
   const drag = active;
   const ui = useUiStore.getState();
   const draft = ui.draft;
-  active = null;
   detach();
+  active = null;
   ui.setDraft(null);
 
   // Нажатие без движения — это выбор предмета, а не перенос.
@@ -178,7 +189,9 @@ function finishDrag(): void {
     result = project.execute(addFurniture(instance, item.name));
   } else {
     targetId = drag.source.furnitureId;
-    result = project.execute(setFurniturePose(targetId, draft.pose));
+    result = project.execute(
+      setFurniturePose(targetId, draft.pose, drag.rotateCenter ? 'Повернуть предмет' : undefined, draft.result.elevationCm),
+    );
   }
 
   if (result && !result.ok) {
@@ -224,6 +237,19 @@ export function startDrag(source: DraftSource, pointer: PointerLike, options: St
   window.addEventListener('pointercancel', cancelDrag);
   window.addEventListener('blur', cancelDrag);
   window.addEventListener('keydown', onKeyDown, true);
+  // Смена комнаты во время переноса отменяет кандидат (14.6).
+  const startRoom = useUiStore.getState().activeRoomId;
+  active.unsubscribeRoom = useUiStore.subscribe((state) => {
+    if (state.activeRoomId !== startRoom) cancelDrag();
+  });
   useUiStore.getState().setNotice(null);
+  update();
+}
+
+/** Поворот ручкой на плане: угол по положению указателя, шаг 15°, Alt — свободный угол (D-10). */
+export function startRotate(furnitureId: Id, pointer: PointerLike, options: StartOptions): void {
+  startDrag({ type: 'move', furnitureId }, pointer, options);
+  if (!active) return;
+  active.rotateCenter = { xCm: options.pose.xCm, zCm: options.pose.zCm };
   update();
 }

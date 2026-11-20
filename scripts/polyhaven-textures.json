@@ -1,0 +1,90 @@
+[
+ {
+  "id": "floral_jacquard",
+  "name": "Floral Jacquard",
+  "authors": [
+   "colormass",
+   "Rico Cilliers"
+  ],
+  "kb": 1307,
+  "widthCm": 25.3,
+  "heightCm": 38.4
+ },
+ {
+  "id": "quatrefoil_jacquard_fabric",
+  "name": "Quatrefoil Jacquard Fabric",
+  "authors": [
+   "colormass",
+   "Rico Cilliers"
+  ],
+  "kb": 568,
+  "widthCm": 28,
+  "heightCm": 28.4
+ },
+ {
+  "id": "poly_wool_herringbone",
+  "name": "Poly Wool Herringbone",
+  "authors": [
+   "colormass",
+   "Rico Cilliers"
+  ],
+  "kb": 921,
+  "widthCm": 27,
+  "heightCm": 27.6
+ },
+ {
+  "id": "rough_linen",
+  "name": "Rough Linen",
+  "authors": [
+   "colormass",
+   "Rico Cilliers"
+  ],
+  "kb": 816,
+  "widthCm": 27.1,
+  "heightCm": 27.1
+ },
+ {
+  "id": "crepe_satin",
+  "name": "Crepe Satin",
+  "authors": [
+   "colormass",
+   "Rico Cilliers"
+  ],
+  "kb": 590,
+  "widthCm": 26.3,
+  "heightCm": 26.8
+ },
+ {
+  "id": "velour_velvet",
+  "name": "Velour Velvet",
+  "authors": [
+   "colormass",
+   "Rico Cilliers"
+  ],
+  "kb": 718,
+  "widthCm": 28.4,
+  "heightCm": 27.3
+ },
+ {
+  "id": "ribbed_corduroy",
+  "name": "Ribbed Corduroy",
+  "authors": [
+   "colormass",
+   "Rico Cilliers"
+  ],
+  "kb": 760,
+  "widthCm": 26.6,
+  "heightCm": 26.7
+ },
+ {
+  "id": "wool_boucle",
+  "name": "Wool Boucle",
+  "authors": [
+   "colormass",
+   "Rico Cilliers"
+  ],
+  "kb": 1254,
+  "widthCm": 31.5,
+  "heightCm": 39
+ }
+]

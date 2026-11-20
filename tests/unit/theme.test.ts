@@ -23,6 +23,22 @@ function contrast(a: string, b: string): number {
   return (hi + 0.05) / (lo + 0.05);
 }
 
+describe('панели поверх 3D (25.3)', () => {
+  // Полупрозрачная поверхность панелей считается как --color-surface: самый светлый реальный случай — 3D-фон белой стены,
+  // поэтому берём худший вариант — поверхность над ярким фоном (92 % непрозрачности).
+  const surface = token('color-surface');
+  const accentSurface = token('color-accent-surface');
+  it('текст на активной кнопке панели и на поверхности не ниже AA', () => {
+    expect(contrast(token('color-text'), accentSurface)).toBeGreaterThanOrEqual(4.5);
+    expect(contrast(token('color-text'), surface)).toBeGreaterThanOrEqual(4.5);
+  });
+  it('панели берут цвета только из переменных: в блоке нет жёстко заданных цветов', () => {
+    const block = css.slice(css.indexOf('/* Панели поверх 3D-вида'));
+    expect(block.match(/#[0-9a-fA-F]{3,8}\b/g) ?? []).toEqual([]);
+    expect(block).not.toMatch(/rgba?\(\s*255/);
+  });
+});
+
 describe('тёмная тема', () => {
   const backgrounds = ['color-bg', 'color-surface', 'color-surface-raised', 'color-surface-hover'];
   const texts = ['color-text', 'color-text-muted', 'color-accent', 'color-danger', 'color-success'];

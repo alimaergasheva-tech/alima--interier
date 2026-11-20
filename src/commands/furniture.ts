@@ -12,7 +12,7 @@ export function addFurniture(instance: FurnitureInstance, name: string): Change 
 }
 
 /** Перемещение и поворот без пересоздания предмета: идентификатор и модель сохраняются. */
-export function setFurniturePose(id: Id, pose: Pose, label = 'Переместить предмет'): Change {
+export function setFurniturePose(id: Id, pose: Pose, label = 'Переместить предмет', elevationCm?: number): Change {
   return {
     label,
     apply: (apartment) => {
@@ -21,7 +21,13 @@ export function setFurniturePose(id: Id, pose: Pose, label = 'Перемести
         ...apartment,
         furniture: apartment.furniture.map((item) =>
           item.id === id
-            ? { ...item, xCm: pose.xCm, zCm: pose.zCm, rotationDeg: pose.rotationDeg }
+            ? {
+                ...item,
+                xCm: pose.xCm,
+                zCm: pose.zCm,
+                rotationDeg: pose.rotationDeg,
+                elevationCm: elevationCm ?? item.elevationCm,
+              }
             : item,
         ),
       };

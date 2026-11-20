@@ -1,3 +1,4 @@
+import { findFinish } from '../catalog/finishes';
 import { roomAxisRect, rectDepth, rectWidth, wallSideOfRect, type RoomSide } from './rooms';
 import type { Apartment, Id, Room } from './types';
 import { EPS_CM } from './units';
@@ -25,6 +26,7 @@ export type IssueCode =
   | 'openings-overlap'
   | 'window-on-inner-wall'
   | 'rooms-disconnected'
+  | 'size-out-of-range'
   | 'furniture-conflict';
 
 export interface Issue {
@@ -210,8 +212,16 @@ export function validateIntegrity(apartment: Apartment): Issue[] {
     }
     const numbers = [opening.widthCm, opening.heightCm];
     const sillOk = opening.kind !== 'window' || (Number.isFinite(opening.sillCm) && opening.sillCm >= 0);
-    const offsetOk = Number.isFinite(opening.offsetCm) && opening.offsetCm >= 0;
-    if (!numbers.every(positive) || !sillOk || !offsetOk) {
+    const offsetOk = Number.isFinite(opening.offsetCm);
+    const rooms = wallIds.has(opening.wallId)
+      ? ` в комнате «${apartment.rooms.filter((room) => room.boundary.some((ref) => ref.wallId === opening.wallId)).map((room) => room.name).join('» и «')}»` : '';
+    if (offsetOk && opening.offsetCm < 0) {
+      issues.push({
+        code: 'opening-outside-wall',
+        message: `${opening.kind === 'door' ? 'Дверь' : 'Окно'} выходит за пределы стены${rooms}`,
+        objectIds: [opening.id],
+      });
+    } else if (!numbers.every(positive) || !sillOk || !offsetOk) {
       issues.push({
         code: 'invalid-number',
         message: `Проём ${opening.id}: некорректные размеры или положение`,
@@ -234,6 +244,29 @@ export function validateIntegrity(apartment: Apartment): Issue[] {
         code: 'invalid-number',
         message: `Предмет ${item.id}: некорректное положение или угол`,
         objectIds: [item.id],
+      });
+    }
+  }
+
+  for (const key of Object.keys(apartment.wallFinishes)) {
+    const [wallId, finishRoomId] = key.split(':');
+    const room = apartment.rooms.find((candidate) => candidate.id === finishRoomId);
+    if (!room || !wallIds.has(wallId ?? '') || !room.boundary.some((ref) => ref.wallId === wallId)) {
+      issues.push({
+        code: 'broken-reference',
+        message: `Отделка ${key} ссылается на несуществующую поверхность стены`,
+        objectIds: [key],
+      });
+    }
+  }
+
+  for (const [floorRoomId, materialId] of Object.entries(apartment.floorFinishes ?? {})) {
+    const material = findFinish(materialId);
+    if (!apartment.rooms.some((candidate) => candidate.id === floorRoomId) || material?.kind !== 'floor') {
+      issues.push({
+        code: 'broken-reference',
+        message: `Покрытие пола ${floorRoomId} ссылается на несуществующую комнату или материал`,
+        objectIds: [floorRoomId],
       });
     }
   }

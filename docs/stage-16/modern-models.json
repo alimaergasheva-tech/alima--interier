@@ -1,0 +1,152 @@
+{
+  "sofa_03": {
+    "widthCm": 273,
+    "depthCm": 93,
+    "heightCm": 84,
+    "triangles": 7108
+  },
+  "sofa_02": {
+    "widthCm": 181,
+    "depthCm": 82,
+    "heightCm": 78,
+    "triangles": 5932
+  },
+  "Sofa_01": {
+    "widthCm": 157,
+    "depthCm": 66,
+    "heightCm": 78,
+    "triangles": 5932
+  },
+  "vintage_day_bed": {
+    "widthCm": 197,
+    "depthCm": 85,
+    "heightCm": 75,
+    "triangles": 3580
+  },
+  "old_bed_frame": {
+    "widthCm": 90,
+    "depthCm": 200,
+    "heightCm": 100,
+    "triangles": 3580
+  },
+  "Ottoman_01": {
+    "widthCm": 88,
+    "depthCm": 62,
+    "heightCm": 42,
+    "triangles": 1228
+  },
+  "modern_coffee_table_02": {
+    "widthCm": 120,
+    "depthCm": 120,
+    "heightCm": 38,
+    "triangles": 3528
+  },
+  "dining_table": {
+    "widthCm": 226,
+    "depthCm": 139,
+    "heightCm": 75,
+    "triangles": 3528
+  },
+  "round_wooden_table_01": {
+    "widthCm": 140,
+    "depthCm": 140,
+    "heightCm": 75,
+    "triangles": 480
+  },
+  "metal_office_desk": {
+    "widthCm": 200,
+    "depthCm": 95,
+    "heightCm": 75,
+    "triangles": 2412
+  },
+  "dining_chair_02": {
+    "widthCm": 43,
+    "depthCm": 58,
+    "heightCm": 85,
+    "triangles": 4168
+  },
+  "bar_chair_round_01": {
+    "widthCm": 48,
+    "depthCm": 49,
+    "heightCm": 75,
+    "triangles": 1120
+  },
+  "wooden_stool_01": {
+    "widthCm": 43,
+    "depthCm": 44,
+    "heightCm": 44,
+    "triangles": 640
+  },
+  "painted_wooden_cabinet": {
+    "widthCm": 119,
+    "depthCm": 62,
+    "heightCm": 100,
+    "triangles": 3004
+  },
+  "painted_wooden_nightstand": {
+    "widthCm": 50,
+    "depthCm": 51,
+    "heightCm": 50,
+    "triangles": 2992
+  },
+  "wooden_bookshelf_worn": {
+    "widthCm": 137,
+    "depthCm": 40,
+    "heightCm": 200,
+    "triangles": 14136
+  },
+  "painted_wooden_bench": {
+    "widthCm": 116,
+    "depthCm": 40,
+    "heightCm": 45,
+    "triangles": 1816
+  },
+  "television_02": {
+    "widthCm": 56,
+    "depthCm": 18,
+    "heightCm": 38,
+    "triangles": 1776
+  },
+  "electric_stove": {
+    "widthCm": 50,
+    "depthCm": 65,
+    "heightCm": 86,
+    "triangles": 3004
+  },
+  "vintage_electric_kettle": {
+    "widthCm": 24,
+    "depthCm": 18,
+    "heightCm": 24,
+    "triangles": 1656
+  },
+  "ornate_mirror_01": {
+    "widthCm": 50,
+    "depthCm": 3,
+    "heightCm": 75,
+    "triangles": 600
+  },
+  "Chandelier_01": {
+    "widthCm": 80,
+    "depthCm": 80,
+    "heightCm": 70,
+    "triangles": 5040
+  },
+  "floor_lamp": {
+    "widthCm": 40,
+    "depthCm": 40,
+    "heightCm": 165,
+    "triangles": 640
+  },
+  "Chandelier_02": {
+    "widthCm": 60,
+    "depthCm": 60,
+    "heightCm": 45,
+    "triangles": 1120
+  },
+  "ceiling_shade_01": {
+    "widthCm": 40,
+    "depthCm": 40,
+    "heightCm": 25,
+    "triangles": 320
+  }
+}

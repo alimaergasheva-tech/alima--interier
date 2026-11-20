@@ -7,7 +7,14 @@ import { ROTATE_STEP_DEG, isDragging } from '../interaction/drag';
 import { selectApartment, useProjectStore } from '../store/projectStore';
 import { useUiStore } from '../store/uiStore';
 
-/** Клавиши выбранного предмета: R и Shift+R — поворот на 15°, Delete — удаление. */
+const ARROWS: Record<string, [number, number]> = {
+  ArrowLeft: [-1, 0],
+  ArrowRight: [1, 0],
+  ArrowUp: [0, -1],
+  ArrowDown: [0, 1],
+};
+
+/** Клавиши выбранного предмета: R и Shift+R — поворот на 15°, стрелки — сдвиг на 1 см (Shift — 10 см), Delete — удаление. */
 export function useEditorHotkeys(): void {
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -43,6 +50,23 @@ export function useEditorHotkeys(): void {
           return;
         }
         const result = project.execute(setFurniturePose(instance.id, pose, 'Повернуть предмет'));
+        ui.setNotice(result && !result.ok ? (result.issues[0]?.message ?? 'Изменение отклонено') : null);
+      } else if (event.code in ARROWS) {
+        event.preventDefault();
+        const item = findCatalogItem(instance.catalogItemId);
+        if (!item) return;
+        const [dx, dz] = ARROWS[event.code] ?? [0, 0];
+        const step = event.shiftKey ? 10 : 1;
+        const pose = { xCm: instance.xCm + dx * step, zCm: instance.zCm + dz * step, rotationDeg: instance.rotationDeg };
+        const check = validatePlacement(apartment, item, instance.roomId, pose, {
+          findItem: findCatalogItem,
+          ignoreId: instance.id,
+        });
+        if (!check.valid) {
+          ui.setNotice(`${check.message}. Сдвиг не выполнен`);
+          return;
+        }
+        const result = project.execute(setFurniturePose(instance.id, pose, 'Сдвинуть предмет', check.elevationCm));
         ui.setNotice(result && !result.ok ? (result.issues[0]?.message ?? 'Изменение отклонено') : null);
       } else if (event.code === 'Delete') {
         event.preventDefault();

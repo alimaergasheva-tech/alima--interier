@@ -11,7 +11,9 @@ export type RoomType =
   | 'bathroom'
   | 'toilet'
   | 'combined-bathroom'
-  | 'hallway';
+  | 'hallway'
+  | 'wardrobe'
+  | 'balcony';
 
 /** Узел на оси стены. Общий узел соседних помещений существует в одном экземпляре. */
 export interface Vertex {
@@ -63,6 +65,8 @@ export interface DoorOpening extends OpeningBase {
 export interface WindowOpening extends OpeningBase {
   kind: 'window';
   sillCm: number;
+  /** Остекление: витраж (D-22) или обычное стекло. По умолчанию — обычное. */
+  glass?: 'clear' | 'stained';
 }
 
 export type Opening = DoorOpening | WindowOpening;
@@ -131,6 +135,12 @@ export interface MaterialDefinition {
   /** Физический размер одного повтора рисунка. */
   tileSizeCm?: { width: number; height: number };
   roughness?: number;
+  /** Раздел в панели отделки. */
+  group?: string;
+  /** Процедурный рисунок без загрузки файлов: вид узора и цвета (фон, основной, акцент). */
+  pattern?: { kind: string; colors: [string, string, string] };
+  /** Источник файла текстуры; у краски и процедурных узоров нет. */
+  license?: AssetLicense;
 }
 
 export const SCHEMA_VERSION = 1;
@@ -147,11 +157,13 @@ export interface Apartment {
   furniture: FurnitureInstance[];
   /** Отделка внутренних поверхностей: ключ wallSurfaceKey(стена, комната) → материал. */
   wallFinishes: Record<string, Id>;
+  /** Покрытие пола по комнатам: id комнаты → id материала kind 'floor' (D-16). Нет записи — пол по умолчанию. */
+  floorFinishes?: Record<Id, Id>;
 }
 
 export interface LayoutTemplate {
   id: Id;
-  livingRooms: 1 | 2 | 3;
+  livingRooms: 1 | 2 | 3 | 4;
   title: string;
   composition: string;
   /** Геометрия без мебели; площадь вычисляется, а не хранится. */

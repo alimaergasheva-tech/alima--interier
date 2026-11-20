@@ -6,7 +6,7 @@ test('приложение открывается и создаёт 3D-холс�
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
 
-  await page.goto('/');
+  await page.goto('/?tech=1');
   await expect(page.getByRole('heading', { name: 'Планировщик интерьера' })).toBeVisible();
 
   const canvas = page.locator('canvas');

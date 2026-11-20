@@ -103,9 +103,13 @@ describe('мебель в командах', () => {
     expect(result.history).toBe(history);
   });
 
-  it('габариты карточек совпадают с коллайдерами', () => {
+  it('коллайдеры в сумме занимают габариты карточки', () => {
     for (const item of techCatalog) {
-      expect(item.colliders[0]).toMatchObject({ widthCm: item.sizeCm.width, depthCm: item.sizeCm.depth });
+      const span = (lo: (c: (typeof item.colliders)[number]) => number, hi: (c: (typeof item.colliders)[number]) => number) =>
+        Math.max(...item.colliders.map(hi)) - Math.min(...item.colliders.map(lo));
+      expect(Math.abs(span((c) => c.xCm - c.widthCm / 2, (c) => c.xCm + c.widthCm / 2) - item.sizeCm.width), `${item.id} ширина`).toBeLessThanOrEqual(1);
+      expect(Math.abs(span((c) => c.zCm - c.depthCm / 2, (c) => c.zCm + c.depthCm / 2) - item.sizeCm.depth), `${item.id} глубина`).toBeLessThanOrEqual(1);
+      expect(Math.abs(span((c) => c.yMinCm, (c) => c.yMaxCm) - item.sizeCm.height), `${item.id} высота`).toBeLessThanOrEqual(1);
     }
   });
 });
@@ -137,5 +141,18 @@ describe('преобразование вида плана (6.2)', () => {
       const b = projectToScreen(view, 100, 0);
       expect((b.x - a.x) / view.scale).toBeCloseTo(100, 9);
     }
+  });
+});
+
+describe('перемещение сохраняет предмет (14.3)', () => {
+  it('setFurniturePose меняет положение и высоту опоры, но не id, модель и вариант', () => {
+    const apartment = {
+      furniture: [{ id: 'f1', catalogItemId: 'sofa_03', assetVersion: 1, roomId: 'r', xCm: 10, zCm: 20, elevationCm: 37, rotationDeg: 0, variantId: 'v1' }],
+    } as never;
+    const moved = (setFurniturePose('f1', { xCm: 50, zCm: 60, rotationDeg: 90 }, undefined, 0).apply(apartment) as never as {
+      furniture: Array<Record<string, unknown>>;
+    }).furniture;
+    expect(moved).toHaveLength(1);
+    expect(moved[0]).toMatchObject({ id: 'f1', catalogItemId: 'sofa_03', variantId: 'v1', xCm: 50, zCm: 60, rotationDeg: 90, elevationCm: 0 });
   });
 });

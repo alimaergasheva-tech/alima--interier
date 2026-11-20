@@ -1,0 +1,443 @@
+[
+  {
+    "id": "sofa_03",
+    "mount": "floor",
+    "sizeCm": [
+      273.1,
+      111.8,
+      92.5
+    ],
+    "points": 694909,
+    "result": "single (категория без проёмов)",
+    "boxes": 1
+  },
+  {
+    "id": "modern_arm_chair_01",
+    "mount": "floor",
+    "sizeCm": [
+      82,
+      102.3,
+      98.7
+    ],
+    "points": 294504,
+    "result": "single (категория без проёмов)",
+    "boxes": 1
+  },
+  {
+    "id": "modern_coffee_table_01",
+    "mount": "floor",
+    "sizeCm": [
+      60,
+      39,
+      120.2
+    ],
+    "points": 511052,
+    "rawBoxes": 48,
+    "fill": 0.34,
+    "result": "composite",
+    "boxes": 8,
+    "boundsOffsetCm": 0
+  },
+  {
+    "id": "sofa_02",
+    "mount": "floor",
+    "sizeCm": [
+      180.7,
+      70.9,
+      81.8
+    ],
+    "points": 171132,
+    "result": "single (категория без проёмов)",
+    "boxes": 1
+  },
+  {
+    "id": "sofa_01",
+    "mount": "floor",
+    "sizeCm": [
+      157.1,
+      79.7,
+      65.8
+    ],
+    "points": 178090,
+    "result": "single (категория без проёмов)",
+    "boxes": 1
+  },
+  {
+    "id": "mid_century_lounge_chair",
+    "mount": "floor",
+    "sizeCm": [
+      100.9,
+      116.9,
+      119
+    ],
+    "points": 152159,
+    "result": "single (категория без проёмов)",
+    "boxes": 1
+  },
+  {
+    "id": "ottoman_01",
+    "mount": "floor",
+    "sizeCm": [
+      88.5,
+      62.4,
+      62.1
+    ],
+    "points": 75613,
+    "result": "single (категория без проёмов)",
+    "boxes": 1
+  },
+  {
+    "id": "vintage_day_bed",
+    "mount": "floor",
+    "sizeCm": [
+      197.3,
+      112.7,
+      85.5
+    ],
+    "points": 374247,
+    "result": "single (категория без проёмов)",
+    "boxes": 1
+  },
+  {
+    "id": "old_bed_frame",
+    "mount": "floor",
+    "sizeCm": [
+      90.5,
+      120.1,
+      200.2
+    ],
+    "points": 651630,
+    "rawBoxes": 153,
+    "fill": 0.2,
+    "result": "composite",
+    "boxes": 4,
+    "boundsOffsetCm": 0
+  },
+  {
+    "id": "modern_coffee_table_02",
+    "mount": "floor",
+    "sizeCm": [
+      119.9,
+      36.9,
+      120
+    ],
+    "points": 954914,
+    "rawBoxes": 55,
+    "fill": 0.25,
+    "result": "composite",
+    "boxes": 7,
+    "boundsOffsetCm": 0
+  },
+  {
+    "id": "coffee_table_round_01",
+    "mount": "floor",
+    "sizeCm": [
+      130.1,
+      49.1,
+      130.1
+    ],
+    "points": 165966,
+    "rawBoxes": 111,
+    "fill": 0.17,
+    "result": "composite",
+    "boxes": 8,
+    "boundsOffsetCm": 0
+  },
+  {
+    "id": "side_table_01",
+    "mount": "floor",
+    "sizeCm": [
+      55,
+      55.1,
+      45
+    ],
+    "points": 255132,
+    "rawBoxes": 24,
+    "fill": 0.41,
+    "result": "composite",
+    "boxes": 8,
+    "boundsOffsetCm": 0
+  },
+  {
+    "id": "dining_table",
+    "mount": "floor",
+    "sizeCm": [
+      225.6,
+      87.7,
+      139
+    ],
+    "points": 615219,
+    "rawBoxes": 249,
+    "fill": 0.4,
+    "result": "composite",
+    "boxes": 7,
+    "boundsOffsetCm": 0
+  },
+  {
+    "id": "round_wooden_table_01",
+    "mount": "floor",
+    "sizeCm": [
+      139.9,
+      100.5,
+      139.9
+    ],
+    "points": 227874,
+    "rawBoxes": 550,
+    "fill": 0.22,
+    "result": "composite",
+    "boxes": 6,
+    "boundsOffsetCm": 0
+  },
+  {
+    "id": "metal_office_desk",
+    "mount": "floor",
+    "sizeCm": [
+      200,
+      78.8,
+      94.7
+    ],
+    "points": 860368,
+    "result": "single (категория без проёмов)",
+    "boxes": 1
+  },
+  {
+    "id": "dining_chair_02",
+    "mount": "floor",
+    "sizeCm": [
+      43.4,
+      97.3,
+      57.6
+    ],
+    "points": 136325,
+    "rawBoxes": 156,
+    "fill": 0.43,
+    "result": "composite",
+    "boxes": 8,
+    "boundsOffsetCm": 0
+  },
+  {
+    "id": "bar_chair_round_01",
+    "mount": "floor",
+    "sizeCm": [
+      48.3,
+      75.1,
+      48.6
+    ],
+    "points": 199333,
+    "rawBoxes": 96,
+    "fill": 0.41,
+    "result": "composite",
+    "boxes": 8,
+    "boundsOffsetCm": 0
+  },
+  {
+    "id": "wooden_stool_01",
+    "mount": "floor",
+    "sizeCm": [
+      42.5,
+      43.7,
+      44.2
+    ],
+    "points": 53710,
+    "rawBoxes": 88,
+    "fill": 0.44,
+    "result": "composite",
+    "boxes": 8,
+    "boundsOffsetCm": 0
+  },
+  {
+    "id": "modern_wooden_cabinet",
+    "mount": "floor",
+    "sizeCm": [
+      244,
+      68,
+      52
+    ],
+    "points": 3736727,
+    "result": "single (категория без проёмов)",
+    "boxes": 1
+  },
+  {
+    "id": "painted_wooden_cabinet",
+    "mount": "floor",
+    "sizeCm": [
+      119.5,
+      118.2,
+      61.7
+    ],
+    "points": 378762,
+    "result": "single (категория без проёмов)",
+    "boxes": 1
+  },
+  {
+    "id": "drawer_cabinet",
+    "mount": "floor",
+    "sizeCm": [
+      114.1,
+      188.1,
+      48.8
+    ],
+    "points": 2488017,
+    "result": "single (категория без проёмов)",
+    "boxes": 1
+  },
+  {
+    "id": "painted_wooden_nightstand",
+    "mount": "floor",
+    "sizeCm": [
+      50.5,
+      61.6,
+      50.9
+    ],
+    "points": 72584,
+    "result": "single (категория без проёмов)",
+    "boxes": 1
+  },
+  {
+    "id": "wooden_bookshelf_worn",
+    "mount": "floor",
+    "sizeCm": [
+      137.4,
+      206.3,
+      58.1
+    ],
+    "points": 2632812,
+    "result": "single (категория без проёмов)",
+    "boxes": 1
+  },
+  {
+    "id": "painted_wooden_bench",
+    "mount": "floor",
+    "sizeCm": [
+      116.5,
+      88.9,
+      49.7
+    ],
+    "points": 181665,
+    "rawBoxes": 23,
+    "fill": 0.28,
+    "result": "composite",
+    "boxes": 5,
+    "boundsOffsetCm": 0
+  },
+  {
+    "id": "television_02",
+    "mount": "tabletop",
+    "sizeCm": [
+      40,
+      41.1,
+      35
+    ],
+    "points": 53927,
+    "result": "single (не напольный)",
+    "boxes": 1
+  },
+  {
+    "id": "electric_stove",
+    "mount": "floor",
+    "sizeCm": [
+      50.3,
+      85.9,
+      64.8
+    ],
+    "points": 564729,
+    "result": "single (категория без проёмов)",
+    "boxes": 1
+  },
+  {
+    "id": "vintage_electric_kettle",
+    "mount": "tabletop",
+    "sizeCm": [
+      32.1,
+      30.5,
+      24.9
+    ],
+    "points": 52798,
+    "result": "single (не напольный)",
+    "boxes": 1
+  },
+  {
+    "id": "ceiling_fan",
+    "mount": "ceiling",
+    "sizeCm": [
+      146.3,
+      51.6,
+      146.3
+    ],
+    "points": 101348,
+    "result": "single (не напольный)",
+    "boxes": 1
+  },
+  {
+    "id": "ornate_mirror_01",
+    "mount": "wall",
+    "sizeCm": [
+      48.6,
+      74.4,
+      2.6
+    ],
+    "points": 265533,
+    "result": "single (не напольный)",
+    "boxes": 1
+  },
+  {
+    "id": "wall_clock",
+    "mount": "wall",
+    "sizeCm": [
+      32,
+      32,
+      4.7
+    ],
+    "points": 20365,
+    "result": "single (не напольный)",
+    "boxes": 1
+  },
+  {
+    "id": "potted_plant_01",
+    "mount": "floor",
+    "sizeCm": [
+      58.7,
+      135,
+      63.4
+    ],
+    "points": 595158,
+    "result": "single (категория без проёмов)",
+    "boxes": 1
+  },
+  {
+    "id": "chandelier_01",
+    "mount": "ceiling",
+    "sizeCm": [
+      74.6,
+      79.8,
+      81.6
+    ],
+    "points": 174736,
+    "result": "single (не напольный)",
+    "boxes": 1
+  },
+  {
+    "id": "desk_lamp_arm_01",
+    "mount": "tabletop",
+    "sizeCm": [
+      20.2,
+      89.3,
+      61.4
+    ],
+    "points": 94049,
+    "result": "single (не напольный)",
+    "boxes": 1
+  },
+  {
+    "id": "industrial_wall_sconce",
+    "mount": "wall",
+    "sizeCm": [
+      15,
+      34.2,
+      25.2
+    ],
+    "points": 64063,
+    "result": "single (не напольный)",
+    "boxes": 1
+  }
+]

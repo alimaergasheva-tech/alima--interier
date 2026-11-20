@@ -165,6 +165,34 @@ function findMountFace(
   return null;
 }
 
+/**
+ * Высота столешницы под основанием предмета «на стол»: верх самого высокого объёма другого предмета,
+ * под которым основание лежит целиком. Если опоры нет, возвращается 0 и проверка выдаст «нужна опора».
+ * Нужна переносу мышью: пользователь не задаёт высоту, её определяет предмет под курсором.
+ */
+function tabletopElevation(
+  apartment: Apartment,
+  item: CatalogItem,
+  roomId: Id,
+  pose: Pose,
+  options: PlacementOptions,
+): number {
+  const { findItem } = options;
+  if (!findItem) return 0;
+  const base = worldColliders(item, pose, 0);
+  let best = 0;
+  for (const other of apartment.furniture) {
+    if (other.id === options.ignoreId || other.roomId !== roomId) continue;
+    const otherItem = findItem(other.catalogItemId);
+    if (!otherItem || otherItem.layer === 'floor-covering') continue;
+    for (const surface of worldColliders(otherItem, other, other.elevationCm)) {
+      const carries = base.every((collider) => collider.polygon.every((corner) => insidePolygon(corner, surface.polygon)));
+      if (carries && surface.yMax > best) best = surface.yMax;
+    }
+  }
+  return best;
+}
+
 export function validatePlacement(
   apartment: Apartment,
   item: CatalogItem,
@@ -191,7 +219,7 @@ export function validatePlacement(
   } else if (item.mount === 'ceiling') {
     elevationCm = apartment.ceilingHeightCm - height;
   } else if (item.mount === 'tabletop') {
-    elevationCm = options.elevationCm ?? 0;
+    elevationCm = options.elevationCm ?? tabletopElevation(apartment, item, roomId, pose, options);
   }
   if (elevationCm < -EPS_CM || elevationCm + height > apartment.ceilingHeightCm + EPS_CM) {
     return fail('bad-support', 'Предмет не помещается по высоте', [], elevationCm);

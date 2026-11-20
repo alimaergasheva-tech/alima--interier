@@ -1,0 +1,98 @@
+// ЭТОТ ФАЙЛ СОЗДАН scripts/gen-colliders.mjs по геометрии моделей; правьте скрипт, а не файл.
+// Составные коллайдеры напольных предметов с проёмами (ножки, сиденье, спинка). Остальные предметы
+// остаются с одним коллайдером по габаритам (см. src/catalog/polyHaven.ts).
+import type { ColliderBox } from '../domain/types';
+
+export const generatedColliders: Record<string, ColliderBox[]> = {
+  modern_coffee_table_01: [
+    { xCm: 0, zCm: -55.3, widthCm: 59.7, depthCm: 9.7, yMinCm: 0, yMaxCm: 27.5 },
+    { xCm: 0, zCm: 55.3, widthCm: 59.7, depthCm: 9.7, yMinCm: 0, yMaxCm: 27.5 },
+    { xCm: -18.1, zCm: -39.2, widthCm: 23.5, depthCm: 41.2, yMinCm: 28.3, yMaxCm: 33.9 },
+    { xCm: -17.9, zCm: 37.8, widthCm: 23.8, depthCm: 44.2, yMinCm: 28.3, yMaxCm: 34 },
+    { xCm: 17.9, zCm: 37.8, widthCm: 23.8, depthCm: 44.2, yMinCm: 28.3, yMaxCm: 33.9 },
+    { xCm: 18.1, zCm: -39.2, widthCm: 23.5, depthCm: 41.2, yMinCm: 28.3, yMaxCm: 34 },
+    { xCm: 0, zCm: -0.3, widthCm: 22.2, depthCm: 39.5, yMinCm: 28.5, yMaxCm: 34 },
+    { xCm: 0, zCm: 0, widthCm: 60, depthCm: 120, yMinCm: 34, yMaxCm: 39 },
+  ],
+  old_bed_frame: [
+    { xCm: 0, zCm: -96.2, widthCm: 90, depthCm: 7.6, yMinCm: 0, yMaxCm: 100 },
+    { xCm: 0, zCm: 89.8, widthCm: 86, depthCm: 20.4, yMinCm: 0, yMaxCm: 54 },
+    { xCm: 0, zCm: 1.8, widthCm: 90, depthCm: 196.5, yMinCm: 12, yMaxCm: 14 },
+    { xCm: -40, zCm: 1.8, widthCm: 10, depthCm: 196.4, yMinCm: 14, yMaxCm: 54 },
+    { xCm: 40, zCm: 0.1, widthCm: 10, depthCm: 199.8, yMinCm: 14, yMaxCm: 54 },
+    { xCm: 0, zCm: -1, widthCm: 90, depthCm: 198, yMinCm: 32, yMaxCm: 34 },
+    { xCm: 0, zCm: -51.6, widthCm: 90, depthCm: 96.9, yMinCm: 34, yMaxCm: 66 },
+    { xCm: 0, zCm: -4.6, widthCm: 90, depthCm: 190.9, yMinCm: 54, yMaxCm: 56 },
+  ],
+  modern_coffee_table_02: [
+    { xCm: -1.5, zCm: -56.5, widthCm: 117, depthCm: 7, yMinCm: 0, yMaxCm: 38 },
+    { xCm: -1.5, zCm: 56.5, widthCm: 117, depthCm: 7, yMinCm: 0, yMaxCm: 38 },
+    { xCm: 0, zCm: 0, widthCm: 90, depthCm: 90, yMinCm: 14, yMaxCm: 17 },
+    { xCm: 0, zCm: 0, widthCm: 120, depthCm: 120, yMinCm: 34, yMaxCm: 36 },
+    { xCm: 0, zCm: 0, widthCm: 120, depthCm: 120, yMinCm: 36, yMaxCm: 38 },
+  ],
+  coffee_table_round_01: [
+    { xCm: 0, zCm: 0, widthCm: 10.1, depthCm: 119, yMinCm: 0, yMaxCm: 9.1 },
+    { xCm: 0, zCm: 0.7, widthCm: 119, depthCm: 11.5, yMinCm: 0, yMaxCm: 10.1 },
+    { xCm: 0, zCm: -52.2, widthCm: 10, depthCm: 25.6, yMinCm: 2.1, yMaxCm: 41.9 },
+    { xCm: 0, zCm: 52.2, widthCm: 10, depthCm: 25.6, yMinCm: 2.1, yMaxCm: 41.9 },
+    { xCm: -52.2, zCm: 0, widthCm: 25.6, depthCm: 10, yMinCm: 2.1, yMaxCm: 41.9 },
+    { xCm: 52.2, zCm: 0, widthCm: 25.6, depthCm: 10, yMinCm: 2.1, yMaxCm: 41.9 },
+    { xCm: 0, zCm: 0, widthCm: 80, depthCm: 80, yMinCm: 42.1, yMaxCm: 44 },
+    { xCm: 0, zCm: 0, widthCm: 112.7, depthCm: 112.7, yMinCm: 44, yMaxCm: 49.1 },
+  ],
+  side_table_01: [
+    { xCm: 0, zCm: 0, widthCm: 55, depthCm: 45, yMinCm: 0, yMaxCm: 5.3 },
+    { xCm: 25.2, zCm: 0, widthCm: 4.6, depthCm: 45, yMinCm: 0, yMaxCm: 52 },
+    { xCm: -25.2, zCm: 0, widthCm: 4.6, depthCm: 45, yMinCm: 6.2, yMaxCm: 52 },
+    { xCm: 0, zCm: 0, widthCm: 55, depthCm: 45, yMinCm: 30.8, yMaxCm: 32 },
+    { xCm: 0, zCm: 0, widthCm: 55, depthCm: 45, yMinCm: 32.1, yMaxCm: 35.8 },
+    { xCm: 0, zCm: -20.2, widthCm: 55, depthCm: 4.6, yMinCm: 46, yMaxCm: 52 },
+    { xCm: 0, zCm: 20.2, widthCm: 55, depthCm: 4.6, yMinCm: 46, yMaxCm: 52 },
+    { xCm: 0, zCm: 0, widthCm: 55, depthCm: 45, yMinCm: 52, yMaxCm: 55.1 },
+  ],
+  dining_table: [
+    { xCm: -85, zCm: 0, widthCm: 6, depthCm: 119, yMinCm: 0, yMaxCm: 69.1 },
+    { xCm: 85, zCm: 0, widthCm: 6, depthCm: 119, yMinCm: 0, yMaxCm: 69.1 },
+    { xCm: 0, zCm: 0, widthCm: 225.8, depthCm: 138.8, yMinCm: 62, yMaxCm: 72 },
+    { xCm: 0, zCm: 0, widthCm: 226, depthCm: 139, yMinCm: 72, yMaxCm: 74 },
+    { xCm: 0, zCm: 0, widthCm: 225.8, depthCm: 138.8, yMinCm: 74, yMaxCm: 75 },
+  ],
+  round_wooden_table_01: [
+    { xCm: 0, zCm: 0, widthCm: 60, depthCm: 60, yMinCm: 0, yMaxCm: 5.5 },
+    { xCm: 0, zCm: 0, widthCm: 19.7, depthCm: 19.7, yMinCm: 7, yMaxCm: 69.5 },
+    { xCm: 0, zCm: 0, widthCm: 140, depthCm: 140, yMinCm: 71, yMaxCm: 73.5 },
+    { xCm: 0, zCm: 0, widthCm: 140, depthCm: 140, yMinCm: 74, yMaxCm: 75 },
+  ],
+  dining_chair_02: [
+    { xCm: 0, zCm: -24, widthCm: 39.8, depthCm: 3.7, yMinCm: 0, yMaxCm: 85 },
+    { xCm: 0, zCm: 22.9, widthCm: 39.8, depthCm: 3.2, yMinCm: 0, yMaxCm: 39.1 },
+    { xCm: 0, zCm: 1.6, widthCm: 43, depthCm: 54.9, yMinCm: 40.6, yMaxCm: 48 },
+    { xCm: 0, zCm: -0.2, widthCm: 39.2, depthCm: 51.4, yMinCm: 48, yMaxCm: 50 },
+    { xCm: 0, zCm: -1.3, widthCm: 39.2, depthCm: 49.1, yMinCm: 50, yMaxCm: 51.3 },
+    { xCm: 0, zCm: -26.2, widthCm: 41, depthCm: 5.7, yMinCm: 60.3, yMaxCm: 81.2 },
+  ],
+  bar_chair_round_01: [
+    { xCm: 0, zCm: -22.5, widthCm: 46.8, depthCm: 2.8, yMinCm: 0, yMaxCm: 65.5 },
+    { xCm: 0, zCm: 22.5, widthCm: 46.8, depthCm: 2.8, yMinCm: 0, yMaxCm: 65.5 },
+    { xCm: 0, zCm: 0, widthCm: 38, depthCm: 39, yMinCm: 25, yMaxCm: 27 },
+    { xCm: 0, zCm: 0, widthCm: 48, depthCm: 49, yMinCm: 67, yMaxCm: 69 },
+    { xCm: 0, zCm: 0, widthCm: 48, depthCm: 49, yMinCm: 70, yMaxCm: 71 },
+    { xCm: 0, zCm: 0, widthCm: 44, depthCm: 45, yMinCm: 72, yMaxCm: 73 },
+    { xCm: 0, zCm: 0, widthCm: 44, depthCm: 45, yMinCm: 74, yMaxCm: 75 },
+  ],
+  wooden_stool_01: [
+    { xCm: 0, zCm: -3.3, widthCm: 25.7, depthCm: 23.5, yMinCm: 0, yMaxCm: 38.5 },
+    { xCm: 0, zCm: 0, widthCm: 43, depthCm: 44, yMinCm: 40, yMaxCm: 41 },
+    { xCm: 0, zCm: 0, widthCm: 43, depthCm: 44, yMinCm: 42, yMaxCm: 44 },
+  ],
+  painted_wooden_bench: [
+    { xCm: -54.9, zCm: 0.4, widthCm: 6.2, depthCm: 37.1, yMinCm: 0, yMaxCm: 44 },
+    { xCm: 54.9, zCm: 0.4, widthCm: 6.2, depthCm: 37.1, yMinCm: 0, yMaxCm: 44 },
+    { xCm: 0, zCm: 0, widthCm: 112.4, depthCm: 36.4, yMinCm: 16, yMaxCm: 19 },
+    { xCm: 0, zCm: 0, widthCm: 112.4, depthCm: 36.4, yMinCm: 32.1, yMaxCm: 34 },
+    { xCm: 0.3, zCm: -17, widthCm: 115, depthCm: 6, yMinCm: 34, yMaxCm: 44 },
+    { xCm: 0, zCm: 17, widthCm: 114.4, depthCm: 6, yMinCm: 34, yMaxCm: 44 },
+    { xCm: 0, zCm: 0, widthCm: 111.9, depthCm: 35.9, yMinCm: 44, yMaxCm: 45 },
+  ],
+};

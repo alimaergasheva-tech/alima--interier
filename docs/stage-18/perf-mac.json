@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-19T18:38:53.775Z",
+  "browser": "chromium",
+  "thresholdsD08": {
+    "fpsMin": 60,
+    "frameP95MsMax": 20,
+    "sceneReadyMsMax": 3000,
+    "modelAppearMsMax": 2000
+  },
+  "build": "production",
+  "sceneReadyAfterClickMs": 212,
+  "sceneReadyMs": 683,
+  "hardware": {
+    "gpu": "ANGLE (Apple, ANGLE Metal Renderer: Apple M1, Unspecified Version)",
+    "cores": 8,
+    "memoryGb": 8,
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+    "dpr": 1,
+    "screen": "1920×1080",
+    "viewport": "1920×1080"
+  },
+  "modelAppearMs": {
+    "sofa_03@-0.2": 243,
+    "modern_coffee_table_02@-0.2": 209,
+    "vintage_electric_kettle@-0.2": 222,
+    "dining_table@0.22": 208,
+    "dining_chair_02@0.12": 213,
+    "dining_chair_02@0.32": 199,
+    "electric_stove@-0.4": 198
+  },
+  "furnitureCount": 7,
+  "fpsIdle": {
+    "frames": 299,
+    "fps": 60,
+    "meanMs": 16.67,
+    "p95Ms": 17.2,
+    "p99Ms": 17.6,
+    "maxMs": 17.7
+  },
+  "fpsOrbit": {
+    "frames": 348,
+    "fps": 58.2,
+    "meanMs": 17.19,
+    "p95Ms": 16.8,
+    "p99Ms": 17.6,
+    "maxMs": 200
+  },
+  "roomSwitch": {
+    "count": 20,
+    "meanMs": 30,
+    "maxMs": 36,
+    "heapBeforeMb": 14.6,
+    "heapAfterMb": 14.9
+  }
+}

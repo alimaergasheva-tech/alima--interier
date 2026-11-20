@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-19T18:39:06.063Z",
+  "build": "production",
+  "thresholdsD08": {
+    "fpsMin": 60,
+    "frameP95MsMax": 20
+  },
+  "rooms": 4,
+  "enterWalkMs": 65,
+  "lightsActive": [
+    "room-3",
+    "room-1",
+    "room-4",
+    "room-2"
+  ],
+  "idle": {
+    "frames": 299,
+    "fps": 60,
+    "p95Ms": 16.8,
+    "p99Ms": 17.4,
+    "maxMs": 17.6
+  },
+  "moving": {
+    "frames": 359,
+    "fps": 60,
+    "p95Ms": 16.8,
+    "p99Ms": 17.5,
+    "maxMs": 17.6
+  }
+}

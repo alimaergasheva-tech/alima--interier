@@ -1,4 +1,7 @@
 import type { AssetLicense, CatalogItem, Id } from '../domain/types';
+import { generatedColliders } from './colliders.generated';
+import { furnitureItems } from './furnitureItems';
+import { ownModel } from './polyHaven';
 
 // ТЕХНИЧЕСКИЙ каталог этапа 4: три реальные модели для проверки импорта и масштаба.
 // Не является утверждённым ассортиментом (SPEC D-07, §12). Источники — ASSETS.md.
@@ -18,20 +21,20 @@ function box(width: number, depth: number, height: number) {
 }
 
 // Габариты измерены скриптом scripts/measure-model.mjs и округлены до сантиметра.
-export const techCatalog: CatalogItem[] = [
+const baseItems: CatalogItem[] = [
   {
     id: 'sofa_03',
     version: 1,
     name: 'Диван',
     category: 'Мягкая мебель',
     roomTypes: ['living', 'kitchen-living'],
-    sizeCm: { width: 273, depth: 93, height: 112 },
+    sizeCm: { width: 273, depth: 93, height: 84 },
     model: { url: '/models/sofa_03/sofa_03.gltf', unit: 'm' },
     previewUrl: '',
     mount: 'floor',
     layer: 'object',
-    colliders: box(273, 93, 112),
-    license: polyHaven('sofa_03', 'Fran Calvente'),
+    colliders: box(273, 93, 84),
+    license: ownModel(),
   },
   {
     id: 'modern_arm_chair_01',
@@ -62,6 +65,17 @@ export const techCatalog: CatalogItem[] = [
     license: polyHaven('modern_coffee_table_01', 'Amin'),
   },
 ];
+
+/**
+ * Рабочий каталог: три модели этапа 4 и 31 предмет, подготовленный в задаче 26 (ASSETS.md).
+ * Столам, стульям, кроватям и скамье вместо одной коробки подставлены составные коллайдеры
+ * (scripts/gen-colliders.mjs): под столешницу можно задвинуть стул (SPEC §11.3).
+ */
+export const techCatalog: CatalogItem[] = [...baseItems, ...furnitureItems].map((item) => {
+  const colliders = generatedColliders[item.id];
+  const withPreview = { ...item, previewUrl: `/previews/${item.id}.png` };
+  return colliders ? { ...withPreview, colliders } : withPreview;
+});
 
 export function findCatalogItem(id: Id): CatalogItem | undefined {
   return techCatalog.find((item) => item.id === id);

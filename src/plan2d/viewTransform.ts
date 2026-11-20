@@ -32,3 +32,14 @@ export function projectToScreen(view: ViewTransform, xCm: number, zCm: number): 
 export function screenToProject(view: ViewTransform, x: number, y: number): Point {
   return { xCm: (x - view.offsetX) / view.scale, zCm: (y - view.offsetY) / view.scale };
 }
+
+/** Масштабирование вокруг указателя оставляет точку проекта под ним неподвижной. */
+export function zoomAt(view: ViewTransform, factor: number, x: number, y: number): ViewTransform {
+  const point = screenToProject(view, x, y);
+  const scale = view.scale * factor;
+  return { scale, offsetX: x - point.xCm * scale, offsetY: y - point.zCm * scale };
+}
+
+export function panBy(view: ViewTransform, dx: number, dy: number): ViewTransform {
+  return { ...view, offsetX: view.offsetX + dx, offsetY: view.offsetY + dy };
+}

@@ -1,11 +1,14 @@
 import { useGLTF } from '@react-three/drei';
 import type { ThreeEvent } from '@react-three/fiber';
 import { useEffect, useMemo } from 'react';
+import { clone as cloneSkinned } from 'three/addons/utils/SkeletonUtils.js';
 import { Box3, BoxGeometry, Color, Mesh, MeshStandardMaterial, Vector3, type Object3D } from 'three';
 import { plannerDebug } from '../debug';
+import { useUiStore } from '../store/uiStore';
 import type { CatalogItem } from '../domain/types';
 import { cmToScene, modelScaleToScene } from '../domain/units';
 import type { Pose } from '../geometry/placement';
+import { ROTATE_HANDLE_LIFT_CM, ROTATE_HANDLE_RADIUS_CM } from '../interaction/rotateHandle';
 
 interface Props {
   item: CatalogItem;
@@ -16,6 +19,8 @@ interface Props {
   ghost?: boolean;
   valid?: boolean;
   onPointerDown?: (event: ThreeEvent<PointerEvent>) => void;
+  /** Ручка поворота: шар за тыльной стороной предмета (только у выбранного). */
+  onRotateStart?: (event: ThreeEvent<PointerEvent>) => void;
 }
 
 const INVALID_COLOR = new Color('#ff3b30');
@@ -33,7 +38,7 @@ interface Prepared {
  * материалы свои, чтобы подсветка одного предмета не меняла остальные.
  */
 function prepare(source: Object3D): Prepared {
-  const object = source.clone(true);
+  const object = cloneSkinned(source);
   const materials: MeshStandardMaterial[] = [];
   object.traverse((node) => {
     if (node instanceof Mesh) {
@@ -49,8 +54,11 @@ function prepare(source: Object3D): Prepared {
   return { object, offset: [-center.x, -box.min.y, -center.z], materials };
 }
 
-export function FurnitureModel({ item, pose, elevationCm = 0, selected, ghost, valid = true, onPointerDown }: Props) {
-  const gltf = useGLTF(item.model.url, false);
+export function FurnitureModel({ item, pose, elevationCm = 0, selected, ghost, valid = true, onPointerDown, onRotateStart }: Props) {
+  // После сбоя «Повторить загрузку» увеличивает счётчик: новый адрес гарантированно обходит
+  // закешированную ошибку загрузчика и кеш браузера.
+  const attempt = useUiStore((state) => state.modelRetry[item.model.url] ?? 0);
+  const gltf = useGLTF(attempt > 0 ? `${item.model.url}?retry=${attempt}` : item.model.url, false);
   const scale = modelScaleToScene(item.model.unit);
   const prepared = useMemo(() => prepare(gltf.scene), [gltf.scene]);
 
@@ -99,13 +107,19 @@ export function FurnitureModel({ item, pose, elevationCm = 0, selected, ghost, v
         <primitive object={prepared.object} position={prepared.offset} />
       </group>
       {(selected || ghost) && (
-        <lineSegments position={[0, h / 2, 0]} raycast={() => null}>
+        <lineSegments name="editor-helper" position={[0, h / 2, 0]} raycast={() => null}>
           <edgesGeometry args={[outline]} />
           <lineBasicMaterial color={ghost && !valid ? '#ff7b72' : '#7fb4ff'} />
         </lineSegments>
       )}
+      {onRotateStart && (
+        <mesh name="editor-helper" position={[0, h + cmToScene(ROTATE_HANDLE_LIFT_CM), -d / 2]} onPointerDown={onRotateStart}>
+          <sphereGeometry args={[cmToScene(ROTATE_HANDLE_RADIUS_CM), 20, 14]} />
+          <meshBasicMaterial color="#7fb4ff" />
+        </mesh>
+      )}
       {ghost && (
-        <mesh position={[0, 0.004, 0]} rotation-x={-Math.PI / 2} raycast={() => null}>
+        <mesh name="editor-helper" position={[0, 0.004, 0]} rotation-x={-Math.PI / 2} raycast={() => null}>
           <planeGeometry args={[w, d]} />
           <meshBasicMaterial color={valid ? '#7fb4ff' : '#ff3b30'} transparent opacity={0.35} depthWrite={false} />
         </mesh>
