@@ -1,8 +1,10 @@
 import { Canvas } from '@react-three/fiber';
+import { useHistoryHotkeys } from './ui/useHistoryHotkeys';
 
 // Каркас этапа 2: подтверждает, что интерфейс и 3D-зависимости работают вместе.
 // Рабочие экраны появляются с этапа 4.
 export function App() {
+  useHistoryHotkeys();
   return (
     <div className="app-shell">
       <header className="app-bar">
